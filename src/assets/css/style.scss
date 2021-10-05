@@ -1426,7 +1426,6 @@ a.site__menu__icon {
 	position: relative;
 	&:after{
 		content: '';
-	    background-image: url('../images/bg/bg-right.png');
 	    background-repeat: no-repeat;
 	    background-size: cover;
 	    width: 50px;
@@ -1534,7 +1533,6 @@ a.site__menu__icon {
 	    position: relative;
 	    margin-bottom: 10px;
 	    &:after{
-	    	content: url(../images/workspace/banner-line.png);
 		    background-position: 60% 100%;
 		    background-repeat: no-repeat;
 		    position: absolute;
@@ -10703,7 +10701,6 @@ a.place__comments__reply {
 	z-index: 0;
 	padding: 0;
 	height: 600px;
-	background-image: url('../images/bg/bg-app-1.jpg');
 	.container {
 		position: relative;
 		height: 100%;
@@ -11581,7 +11578,6 @@ a.place__comments__reply {
     	}
     	h1{
     		font-size: 64px;
-    		background-image: url(../images/cilinic/banner-line.png);
 		    background-position: 35% 100%;
 		    background-repeat: no-repeat;
 		    background-size: 175px;
