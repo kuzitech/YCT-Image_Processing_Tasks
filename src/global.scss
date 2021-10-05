@@ -24,3 +24,44 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "assets/libs/line-awesome/css/line-awesome.min.css";
+@import "assets/libs/fontawesome-pro/css/fontawesome.css";
+
+.showgreen{
+    --background: linear-gradient(to bottom, #006600, #ffffff) !important;
+}
+
+.logo img{
+    width: 60px;
+}
+
+.mt10{
+    margin-top: 10px;
+}
+
+.mb10{
+    margin-bottom: 10px;
+}
+
+.txt-white{
+    color: #fff;
+}
+
+.gbwhite{
+    background: #fff;
+}
+
+.result-box{
+    width: 100%;
+    height: 415px;
+    img{
+        width: 100%;
+        height: 380px;
+    }
+}
+
+.backlink{
+    a{color: #ffffff;}
+    margin-bottom: 15px;
+}

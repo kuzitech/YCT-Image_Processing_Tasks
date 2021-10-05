@@ -1,0 +1,94 @@
+<ion-content class="showgreen">
+  
+	<div id="wrapper">
+		<main id="main" class="site-main">
+            <section class="list-categories">
+                <div class="container">
+                    <div class="title-wrap align-center">
+                        <div class="logo"><img src="assets/images/logo_new.png" /></div>
+                        <h2>IMAGE PROCESSING TASK</h2>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 backlink ">
+                        <a routerLink="/home" class=""><i class="la la-angle-left"></i> BACK TO HOMESCREEN</a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-md-4">
+                        <div class="listing-box" id="social">
+                          <h3>Object Detection</h3>
+                          <div class="field-group">
+                            <label for="place_socials">Select A Model</label>
+                            <div class="field-clone">
+                              <div class="field-inline field-3col">
+                                <div class="field-group field-select">
+                                  <ion-select (ionChange)="select($event)" placeholder="Select model" id="place_socials">
+                                    <ion-select-option value="coco">COCO SSD</ion-select-option>
+                                    <ion-select-option value="lvis">IVIS</ion-select-option>
+                                    <ion-select-option value="human-anatomy">Human Anatomy</ion-select-option>
+                                    <ion-select-option value="openimages">Google Open Images</ion-select-option>
+                                    <ion-select-option value="cld-fashion">Fashion</ion-select-option>
+                                  </ion-select>
+                                  <i class="la la-angle-down"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <h3>Media</h3>
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="field-group field-file">
+                                  <label for="cover_img" class="preview">
+                                    <img *ngIf="!static" class="img_preview" [src]="preview" alt="" />
+                                    <img *ngIf="static" class="img_preview" [src]="staticimg" alt="" />
+                                    <i class="la la-cloud-upload-alt"></i>
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div (click)="opencam()" class="field-group field-file">
+                                  <label for="cover_img" class="preview">
+                                    <i class="la la-camera"></i>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-8">
+                        <div class="inner">
+                          <div class="row">
+                              <div *ngIf="resultArrived" class="col-12">
+                                  <div class="item ion-text-center hover__box result-box">
+                                      <a  >
+                                          <img [src]="finalImg" [jLightbox]="finalImg" >
+                                      </a><br>
+                                      <button class="btn btn-success openbig">Click the image to enlarge</button>
+                                      <!-- <button (click)="enlarge()" class="btn btn-success openbig">See Listed Objects</button> -->
+                                  </div>
+                              </div>
+                              <div *ngIf="!resultArrived" class="col-12">
+                                  <div class="item ion-text-center hover__box result-box">
+                                      <a  >
+                                          <img [src]="staticimg" [jLightbox]="staticimg" >
+                                      </a><br>
+                                      <button class="btn btn-success openbig">Click the image to enlarge</button>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </section><!-- .list-categories -->
+		</main><!-- .site-main -->
+
+		<footer id="footer" class="footer">
+			<div class="container">
+				<div class="footer__bottom">
+					<p class="footer__bottom__copyright">&copy; 2021 </p>
+				</div><!-- .top-footer -->
+			</div><!-- .container -->
+		</footer><!-- site-footer -->
+	</div><!-- #wrapper -->
+</ion-content>
