@@ -55,11 +55,11 @@ export class RunimagesService {
   async detectImage(data:any, damodel:any): Promise<any>{
     return new Promise ( resolve=>{
       const timestamp = Math.round((new Date).getTime()/1000).toString();
-      const kkey = '531695123194584';
-      const crypt = 'axspyY0BkIU_velugAEt1yfFaO0';
-      const cloudName = 'yoricdesigns';
+      const kkey = 'YOUR_CLOUDINARY_KEY';
+      const crypt = 'YOUR_CLOUDINARY_SECRET';
+      const cloudName = 'YOUR_CLOUDINARY_CLOUDNAME';
       const dataset = damodel;
-      const unsignedUploadPreset = 'image_task';
+      const unsignedUploadPreset = 'YOUR_CLOUDINARY_UPLOADPRESET';
       let tobesha = 'auto_tagging=0.6&detection='+dataset+'&timestamp='+timestamp+crypt;
         
       const signature = new sha1().update(tobesha).digest('hex');
@@ -98,10 +98,10 @@ export class RunimagesService {
     async enhanceImage(data:any, modela:any): Promise<any>{
     return new Promise ( resolve=>{
       const timestamp = Math.round((new Date).getTime()/1000).toString();
-      const kkey = '531695123194584';
-      const crypt = 'axspyY0BkIU_velugAEt1yfFaO0';
-      const cloudName = 'yoricdesigns';
-      const unsignedUploadPreset = 'image_task';
+      const kkey = 'YOUR_CLOUDINARY_KEY';
+      const crypt = 'YOUR_CLOUDINARY_SECRET';
+      const cloudName = 'YOUR_CLOUDINARY_CLOUDNAME';
+      const unsignedUploadPreset = 'YOUR_CLOUDINARY_UPLOADPRESET';
       var model, modelad;
       model = modela == 'jpg' ? "jpegmini" : "viesus_correct";
       modelad = modela == 'jpg' ? "q" : "e";
@@ -141,10 +141,10 @@ export class RunimagesService {
   async compressImage(data:any, modela:any,take:any,height:any): Promise<any>{
     return new Promise ( resolve=>{
       const timestamp = Math.round((new Date).getTime()/1000).toString();
-      const kkey = '531695123194584';
-      const crypt = 'axspyY0BkIU_velugAEt1yfFaO0';
-      const cloudName = 'yoricdesigns';
-      const unsignedUploadPreset = 'image_task';
+      const kkey = 'YOUR_CLOUDINARY_KEY';
+      const crypt = 'YOUR_CLOUDINARY_SECRET';
+      const cloudName = 'YOUR_CLOUDINARY_CLOUDNAME';
+      const unsignedUploadPreset = 'YOUR_CLOUDINARY_UPLOADPRESET';
       let tobesha = 'eager=q_'+modela+',c_fit,'+take+','+height+'&timestamp='+timestamp+crypt;
         
       const signature = new sha1().update(tobesha).digest('hex');
@@ -178,6 +178,4 @@ export class RunimagesService {
         
   }
 
-  Sha1(){
-  }
 }
