@@ -39,61 +39,14 @@ export class DetectionPage implements OnInit {
     this.processImage(this.preview);
   }
 
-  async enlarge(){
-    // const mod = await this.modal.create({
-    //   component: EnlargeComponent,
-    //   componentProps: {data: {tags: this.tags}},
-    //   cssClass: "enlarge_modal"
-    // });
-    // mod.present();
-  }
-
-  // async presentAlertConfirm() {
-  //   const alert = await this.alertController.create({
-  //     cssClass: 'my-custom-class',
-  //     header: 'Confirm!',
-  //     message: 'Message <strong>text</strong>!!!',
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: (blah) => {
-  //           console.log('Confirm Cancel: blah');
-  //         }
-  //       }, {
-  //         text: 'Okay',
-  //         handler: () => {
-  //           console.log('Confirm Okay');
-  //         }
-  //       }
-  //     ]
-  //   });
-
-  //   await alert.present();
-  // }
-
   async processImage(a:any){
     const loader = await this.proc.create({
       message: "Processing your image! Please Wait!!",
       spinner: "circles"
     })
     loader.present();
-    var tm, key;
-    const data = {
-      timestamp : this.tm, //Math.round((new Date).getTime()/1000).toString(),
-      kkey : '531695123194584',
-      crypt : 'axspyY0BkIU_velugAEt1yfFaO0',
-      dataset: this.selected
-    }
+    
     const unsignedUploadPreset = 'image_task';
-    //let tobesha = 'auto_tagging=0.6&detection=coco_v1'
-    //+'&timestamp='+data.timestamp+'&upload_preset'+unsignedUploadPreset;
-    // await this.load.get({payload: '531695123194584', key: data.crypt}).then((re:any)=>{
-    //   key = re.sign;
-    //   tm = re.timestamp;
-    //   console.log(re,this.tm);
-    // })
     
     await this.load.detectImage(a,this.selected).then((res:any)=>{
       console.log(res)
