@@ -33,7 +33,7 @@
                                 <div class="field-group field-file">
                                   <label for="cover_img" class="preview">
                                     <img *ngIf="!static" class="img_preview" [src]="preview" alt="" />
-                                    <img *ngIf="static" class="img_preview" [src]="staticimg" alt="" />
+                                    <img *ngIf="static" class="img_preview" [jLightbox]="staticimg" [src]="staticimg" alt="" />
                                     <i class="la la-cloud-upload-alt"></i>
                                   </label>
                                 </div>
@@ -56,9 +56,11 @@
                                   <div class="item ion-text-center hover__box result-box">
                                       <a  >
                                           <img [src]="finalImg" [jLightbox]="finalImg" >
-                                      </a><br>
-                                      <button class="btn btn-success openbig">Click the image to enlarge</button>
-                                      <!-- <button (click)="enlarge()" class="btn btn-success openbig">See Listed Objects</button> -->
+                                      </a>
+                                      
+                                    <small>Original size: {{ oriSize }} KB |  Compressed size: {{ comSize }} KB</small><br>
+                                    <small>Original width: {{ oriWidth }} px |  Compressed width: {{ analysis.width }} px</small><br>
+                                    <small>Original height: {{ oriHeight }} px |  Compressed height: {{ analysis.height }} px</small>                                 
                                   </div>
                               </div>
                               <div *ngIf="!resultArrived" class="col-12">

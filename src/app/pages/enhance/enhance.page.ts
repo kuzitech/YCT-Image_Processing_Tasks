@@ -20,6 +20,11 @@ export class EnhancePage implements OnInit {
   selected = '';
   finalImg : any;
   tags: any;
+  oriSize = '0';
+  comSize = '0';
+  analysis: { width: any; height: any; format: any; address: any; };
+  oriWidth: any;
+  oriHeight: any;
 
   constructor(
     private load: RunimagesService, 
@@ -34,6 +39,8 @@ export class EnhancePage implements OnInit {
     const img = await this.getimage.getPhoto();
     this.preview = img;
     this.static = false;
+    const fileSize = await this.getimage.convert(img);
+    this.oriSize = (fileSize.size/1024).toFixed(2);
     this.processImage(this.preview);
   }
 
@@ -43,25 +50,20 @@ export class EnhancePage implements OnInit {
       spinner: "circles"
     })
     loader.present();
-    var tm, key;
-    const data = {
-      timestamp : this.tm, //Math.round((new Date).getTime()/1000).toString(),
-      kkey : '531695123194584',
-      crypt : 'axspyY0BkIU_velugAEt1yfFaO0',
-    }
-    const unsignedUploadPreset = 'image_task';
-    //let tobesha = 'auto_tagging=0.6&detection=coco_v1'
-    //+'&timestamp='+data.timestamp+'&upload_preset'+unsignedUploadPreset;
-    // await this.load.get({payload: '531695123194584', key: data.crypt}).then((re:any)=>{
-    //   key = re.sign;
-    //   tm = re.timestamp;
-    //   console.log(re,this.tm);
-    // })
     
     await this.load.enhanceImage(a,'eye').then((res:any)=>{
-      console.log(res)
       this.resultArrived = true;
-      this.finalImg = res.response.secure_url;
+      let naData = { 
+        width: res.response.eager[0].width, 
+        height: res.response.eager[0].height, 
+        format: res.response.eager[0].format,
+        address: res.response.eager[0].public_id
+      }
+      this.analysis = naData;
+      this.finalImg = res.response.eager[0].secure_url;
+      this.comSize = (res.response.eager[0].bytes/1024).toFixed(2);
+      this.oriWidth = res.response.width;
+      this.oriHeight = res.response.height;
       loader.dismiss();
     },(err:any)=>{
       loader.dismiss();

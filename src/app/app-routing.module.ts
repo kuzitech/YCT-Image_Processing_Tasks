@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/segment/segment.module').then( m => m.SegmentPageModule)
   },
   {
-    path: 'augment',
-    loadChildren: () => import('./pages/augment/augment.module').then( m => m.AugmentPageModule)
-  },
-  {
     path: 'compress',
     loadChildren: () => import('./pages/compress/compress.module').then( m => m.CompressPageModule)
   },

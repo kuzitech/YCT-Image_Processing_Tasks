@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as tfjs  from '@tensorflow/tfjs';
 import * as deeplab from '@tensorflow-models/deeplab';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { OpencamService } from 'src/app/services/opencam.service';
 import { RunimagesService } from 'src/app/services/runimages.service';
 
@@ -32,12 +32,11 @@ export class SegmentPage implements OnInit {
     private load: RunimagesService, 
     private getimage: OpencamService, 
     private proc : LoadingController,
-    //private rend : 
+    private rend : ToastController
   ) { }
 
   ngOnInit() {
     tfjs.setBackend('webgl');
-
   }
 
   async opencam(){
@@ -49,29 +48,40 @@ export class SegmentPage implements OnInit {
     this.tryseg(file);
   }
 
+  select(a:any){
+    this.modeName = a.srcElement.value;
+  }
+
   async tryseg(img:any){
     const loader = await this.proc.create({
       message: "Processing your image! Please Wait!!",
       spinner: "circles"
     })
     loader.present();
-    let mode = this.modeName;
+
+    const toast = await this.rend.create({
+      message: 'Failed to compile fragment shader. Please try another dataset!',
+      position: "top",
+      color: 'medium',
+      duration: 3000
+    })
 
     const loadModel = async () => {
-      const modelName = 'pascal';   // set to your preferred model, either `pascal`, `cityscapes` or `ade20k`
       const quantizationBytes = 2;  // either 1, 2 or 4
-      return await deeplab.load({base: modelName, quantizationBytes});
+      return await deeplab.load({base: this.modeName, quantizationBytes});
     };
-    
-    //const input = tfjs.zeros([227, 500, 3]);
-    // ...
-    //const loade = await this._base64ToArrayBuffer(img);
-    
+        
     loadModel().then((model) => {
       model.segment(img).then((output) => {
         loader.dismiss();
         this.displaySegmentationMap(this.modeName, output);
+      },(error)=>{
+        toast.present();
+        loader.dismiss();
       });
+    },(error)=>{
+      toast.present();
+      loader.dismiss();
     });            
                 
 
@@ -89,11 +99,9 @@ async displaySegmentationMap (modelName, deeplabOutput) {
   })
   loader.present();
   const {legend, height, width, segmentationMap} = deeplabOutput;
-  console.log(this.canvas)
   const canvas : HTMLCanvasElement = <HTMLCanvasElement> document.getElementById('output-image');
   const ctx : CanvasRenderingContext2D = canvas.getContext('2d');
 
-  //toggleInvisible('output-card', false);
   const segmentationMapData = new ImageData(segmentationMap, width, height);
   canvas.style.width = '100%';
   canvas.style.height = '100%';
@@ -120,11 +128,7 @@ async displaySegmentationMap (modelName, deeplabOutput) {
 
     legendList.appendChild(tag);
   });
-  //toggleInvisible('legend-card', false);
 
-
-  //const inputContainer = document.getElementById('input-card');
-  //inputContainer.scrollIntoView({behavior: 'smooth', block: 'nearest'});
 }
 
 

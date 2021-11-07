@@ -53,3 +53,8 @@ ion-select{
   .space-evenly {
     justify-content: space-evenly;
   }
+
+  #legend span{
+    display: inline-flex;
+    width: fit-content;
+  }

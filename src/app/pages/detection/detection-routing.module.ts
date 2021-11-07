@@ -8,14 +8,6 @@ const routes: Routes = [
     path: '',
     component: DetectionPage
   },
-  {
-    path: 'live',
-    loadChildren: () => import('./live/live.module').then( m => m.LivePageModule)
-  },
-  {
-    path: 'direct',
-    loadChildren: () => import('./direct/direct.module').then( m => m.DirectPageModule)
-  }
 ];
 
 @NgModule({

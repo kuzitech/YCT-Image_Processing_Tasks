@@ -19,13 +19,24 @@
                           <h3>Image Compression</h3>
                           <div class="field-group">
                             <label for="place_socials">Upload Image here to begin</label>
-                            <!-- <div class="field-group field-select">
-                              <ion-select (ionChange)="select($event)" placeholder="Select model" id="place_socials">
-                                <ion-select-option value="jpg">JPEGMINI</ion-select-option>
-                                <ion-select-option value="eye">VIESUS™</ion-select-option>
+                            <div class="field-group field-select">
+                              <ion-select (ionChange)="select($event)" placeholder="Select quality" id="place_socials">
+                                <ion-select-option value="auto:best">Automatic Best</ion-select-option>
+                                <ion-select-option value="auto:eco">Automatic Economy</ion-select-option>
+                                <ion-select-option value="auto:good">Automatic Good</ion-select-option>
+                                <ion-select-option value="auto:low">Automatic Low</ion-select-option>
+                                <ion-select-option value="10">10 Percent</ion-select-option>
+                                <ion-select-option value="20">20 Percent</ion-select-option>
+                                <ion-select-option value="30">30 Percent</ion-select-option>
+                                <ion-select-option value="40">40 Percent</ion-select-option>
+                                <ion-select-option value="50">50 Percent</ion-select-option>
+                                <ion-select-option value="60">60 Percent</ion-select-option>
+                                <ion-select-option value="70">70 Percent</ion-select-option>
+                                <ion-select-option value="80">80 Percent</ion-select-option>
+                                <ion-select-option value="jpegmini">JpegMINI</ion-select-option>
                               </ion-select>
                               <i class="la la-angle-down"></i>
-                            </div> -->
+                            </div>
                             
                             <h3>Media</h3>
                             <div class="row">
@@ -33,7 +44,7 @@
                                 <div class="field-group field-file">
                                   <label for="cover_img" class="preview">
                                     <img *ngIf="!static" class="img_preview" [src]="preview" alt="" />
-                                    <img *ngIf="static" class="img_preview" [src]="staticimg" alt="" />
+                                    <img *ngIf="static" class="img_preview" [jLightbox]="staticimg" [src]="staticimg" alt="" />
                                     <i class="la la-cloud-upload-alt"></i>
                                   </label>
                                 </div>
@@ -56,9 +67,11 @@
                                   <div class="item ion-text-center hover__box result-box">
                                       <a  >
                                           <img [src]="finalImg" [jLightbox]="finalImg" >
-                                      </a><br>
-                                      <button class="btn btn-success openbig">Click the image to enlarge</button>
-                                      <!-- <button (click)="enlarge()" class="btn btn-success openbig">See Listed Objects</button> -->
+                                      </a>
+                                      
+                                    <small>Original size: {{ oriSize }} KB |  Compressed size: {{ comSize }} KB</small><br>
+                                    <small>Original width: {{ oriWidth }} px |  Compressed width: {{ analysis.width }} px</small><br>
+                                    <small>Original height: {{ oriHeight }} px |  Compressed height: {{ analysis.height }} px</small>                                 
                                   </div>
                               </div>
                               <div *ngIf="!resultArrived" class="col-12">

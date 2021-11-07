@@ -77,6 +77,7 @@ export class RunimagesService {
           if (xhr.readyState == 4 && xhr.status == 200) {
             // File uploaded successfully
             var response = JSON.parse(xhr.responseText);
+            console.log(response);
             resolve({response: response,status: 999});
           }
         };
@@ -130,6 +131,46 @@ export class RunimagesService {
         fd.append('file', data);
         fd.append('api_key', kkey);
         fd.append("eager", modelad+'_'+model);
+        fd.append('signature', signature);
+        fd.append('timestamp', timestamp);
+        xhr.send(fd);
+    } )
+        
+  }
+
+  async compressImage(data:any, modela:any,take:any,height:any): Promise<any>{
+    return new Promise ( resolve=>{
+      const timestamp = Math.round((new Date).getTime()/1000).toString();
+      const kkey = '531695123194584';
+      const crypt = 'axspyY0BkIU_velugAEt1yfFaO0';
+      const cloudName = 'yoricdesigns';
+      const unsignedUploadPreset = 'image_task';
+      let tobesha = 'eager=q_'+modela+',c_fit,'+take+','+height+'&timestamp='+timestamp+crypt;
+        
+      const signature = new sha1().update(tobesha).digest('hex');
+      //console.log(signature)
+  
+      // *********** Upload file to Cloudinary ******************** //
+        var url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`;
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+        //var mode = model;
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        
+        xhr.onreadystatechange = function(e) {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            // File uploaded successfully
+            var response = JSON.parse(xhr.responseText);
+            resolve({response: response,status: 999});
+          }
+        };
+  
+        //fd.append('upload_preset', unsignedUploadPreset);
+        //fd.append('tags', 'product_image'); // Optional - add tag for image admin in Cloudinary
+        fd.append('file', data);
+        fd.append('api_key', kkey);
+        fd.append("eager", 'q_'+modela+',c_fit,'+take+','+height);
         fd.append('signature', signature);
         fd.append('timestamp', timestamp);
         xhr.send(fd);
