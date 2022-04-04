@@ -28,12 +28,15 @@ Cloudinary is a cloud-based service that provides an end-to-end image management
 
 # How to use.
 The project is available and hosted on firebase as a web app via https://yctimagetasks.web.app/ at the moment.
+
 Select Task
-  Firstly, the user chooses a task to perform from the list of selected image processing tasks available on the program.
+Firstly, the user chooses a task to perform from the list of selected image processing tasks available on the program.
+
 Load
-  Secondly, the image is loaded into the program by using a file selector option. A validation is performed in order to ensure that image is valid. If validation     approves, the image is saved into a variable. The image is then displayed on the screen to assure to user the correct image is selected. Then, the dimensions of the image are computed including the rows, for processing. A waiter block is generated in order to inform the user it is been processed.
+Secondly, the image is loaded into the program by using a file selector option. A validation is performed in order to ensure that image is valid. If validation     approves, the image is saved into a variable. The image is then displayed on the screen to assure to user the correct image is selected. Then, the dimensions of the image are computed including the rows, for processing. A waiter block is generated in order to inform the user it is been processed.
+
 Process and analyze
-  The loaded image is then processed accordingly to the selected image processing task. This converts the image to Base64 data, performs the required algorithm for the selected task and return image data that is display on the screen to the user as the result of the operation.
+The loaded image is then processed accordingly to the selected image processing task. This converts the image to Base64 data, performs the required algorithm for the selected task and return image data that is display on the screen to the user as the result of the operation.
 
 # Tools
 
